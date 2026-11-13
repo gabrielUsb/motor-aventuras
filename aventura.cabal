@@ -1,0 +1,45 @@
+cabal-version:      2.4
+name:               aventura
+version:            0.1.0.0
+synopsis:           Motor de aventuras de texto (CI-3661, Proyecto 1)
+description:
+    Lee un mundo desde un archivo, lo valida y deja que un jugador lo recorra
+    con comandos en español. Variante 2: Turnos.
+author:             Gabriel (15-11278), Alejandro (17-10684)
+category:           Game
+build-type:         Simple
+extra-doc-files:    README.md
+
+common comun
+    default-language: Haskell2010
+    ghc-options:      -Wall
+    build-depends:    base >=4.14 && <5
+
+library
+    import:           comun
+    hs-source-dirs:   src
+    exposed-modules:  Motor.Tipos
+                      Motor.Reconocedor
+                      Motor.Mundo
+                      Motor.Comandos
+                      Motor.Nucleo
+                      Motor.Persistencia
+    build-depends:    containers >=0.6 && <0.9
+                    , directory  >=1.3 && <1.4
+                    , filepath   >=1.4 && <1.6
+
+executable aventura
+    import:           comun
+    hs-source-dirs:   app
+    main-is:          Main.hs
+    build-depends:    aventura
+
+test-suite pruebas
+    import:           comun
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Spec.hs
+    other-modules:    Fixtures
+    build-depends:    aventura
+                    , containers >=0.6 && <0.9
+                    , hspec      >=2.7 && <3

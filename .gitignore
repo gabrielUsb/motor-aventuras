@@ -1,0 +1,13 @@
+dist-newstyle/
+.stack-work/
+*.hi
+*.o
+*.dyn_hi
+*.dyn_o
+.ghc.environment.*
+cabal.project.local*
+
+.vscode/
+
+proyecto1.pdf
+.dist/
